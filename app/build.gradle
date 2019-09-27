@@ -36,11 +36,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding.enabled = true
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
+
+    implementation project(':libJokeTeller')
+    implementation project(':jokeactivity')
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
