@@ -4,6 +4,8 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
+import org.udacity.libjoketeller.JokeTeller;
+
 import javax.inject.Named;
 
 /** An endpoint class we are exposing */
@@ -23,6 +25,14 @@ public class MyEndpoint {
     public MyBean sayHi(@Named("name") String name) {
         MyBean response = new MyBean();
         response.setData("Hi, " + name);
+
+        return response;
+    }
+
+    @ApiMethod(name = "tellAJoke")
+    public MyBean tellAJoke() {
+        MyBean response = new MyBean();
+        response.setData(JokeTeller.tellJoke());
 
         return response;
     }
