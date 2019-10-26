@@ -5,6 +5,7 @@
     tools:context=".JokeActivity">
 
     <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/tv_joke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
