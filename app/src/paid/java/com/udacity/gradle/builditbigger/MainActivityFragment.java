@@ -1,10 +1,12 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -32,6 +34,12 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void tellJoke(View view) {
-        new EndpointsAsyncTask().execute(view.getContext());
+        Context context = view.getContext();
+        if (ConnectivityChecker.isConnected(context)) {
+            new EndpointsAsyncTask().execute(context);
+        } else {
+            Toast.makeText(context, getString(R.string.no_connection_error),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

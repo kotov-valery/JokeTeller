@@ -44,16 +44,18 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
         context = params[0];
 
         try {
-            return  myApiService.tellAJoke().execute().getData();
+            return myApiService.tellAJoke().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            return null;
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
-        Intent showAJoke = new Intent(context, JokeActivity.class);
-        showAJoke.putExtra(JokeActivity.EXTRA_JOKE, result);
-        context.startActivity(showAJoke);
+        if (result != null && result != "") {
+            Intent showAJoke = new Intent(context, JokeActivity.class);
+            showAJoke.putExtra(JokeActivity.EXTRA_JOKE, result);
+            context.startActivity(showAJoke);
+        }
     }
 }
